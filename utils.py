@@ -110,7 +110,7 @@ def print_summary_report(candidates: List[Person]):
     print("====================================================================================")
 
 
-def process_csv_data(uncleaned_data: List[Union[List, Tuple, Dict]]):
+def process_csv_data(raw_data: List[Union[List, Tuple, Dict]]):
     """
     Processes raw CSV data into a list of Person objects.
     Handles both list-based and dictionary-based row formats.
@@ -119,10 +119,10 @@ def process_csv_data(uncleaned_data: List[Union[List, Tuple, Dict]]):
     candidates = []
     seen_ids = set()
 
-    if not uncleaned_data:
+    if not raw_data:
         raise ValueError("Input data is empty.")
 
-    header = uncleaned_data[0]
+    header = raw_data[0]
     required_fields = ['ID', 'Name', 'Email', 'Billing', 'Location']
 
     
@@ -130,7 +130,7 @@ def process_csv_data(uncleaned_data: List[Union[List, Tuple, Dict]]):
         missing = [field for field in required_fields if field not in header]
         raise ValueError(f"Missing required fields in header: {missing}")
 
-    data = uncleaned_data[1:]
+    data = raw_data[1:]
 
     for i, row in enumerate(data):
         print(f"Started processing row {i + 1}")

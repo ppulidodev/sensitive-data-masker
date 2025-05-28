@@ -48,7 +48,7 @@ class Person:
         return str(name).strip()
 
     def _validate_email(self, email):
-        if not email or not re.match(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}(?:\.[a-zA-Z]{2,})?$', str(email)):
+        if not email or not re.match(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}(?:\.[a-zA-Z]{2,})?$', str(email).strip()):
             raise InvalidEmailError(f"Email must have a valid format. Got: {email}")
         return str(email)
 

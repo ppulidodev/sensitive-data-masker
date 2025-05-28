@@ -22,8 +22,8 @@ def main():
     args = parser.parse_args()
 
     try:
-        uncleaned_data = read_file(args.input_file)
-        cleaned_data = process_csv_data(uncleaned_data)
+        raw_data = read_file(args.input_file)
+        cleaned_data = process_csv_data(raw_data)
         average_billing = calculate_billing_average(cleaned_data)
         masked_data = mask_data(cleaned_data, average_billing)
         write_file(args.output_file, headers=["ID", "Name", "Email", "Billing", "Location"], data=masked_data)

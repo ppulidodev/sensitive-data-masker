@@ -4,7 +4,7 @@ This project focuses on processing a CSV file and masking any sensitive data it 
 
 ## Features
 
-- Read a `.csv` file with the structure: `[ID;Name;Email;Billing;Location]`
+- Read a `.csv` file with the structure: `[ID,Name,Email,Billing,Location]`
 - Mask sensitive data:
   - **Name**: replace each letter with 'X', preserving the original length
   - **Email**: replace letters with 'X' while keeping the original length and top-level domain (e.g., `.com`)
@@ -34,8 +34,15 @@ cd sensitive-data-masker
 
 From the project folder run 
 ```
-python3 -m main.py /path-to-the-file
+python3 -m main /path/to/input_file.csv
 ```
+
+To define the ouput-file default masked_clients.csv
+
+```
+python3 -m main /path/to/input_file.csv /desired/path/output_file
+```
+By default is masked_clients.csv
 
 ## Project Structure
 ```
@@ -83,3 +90,15 @@ ID,Name,Email,Billing,Location
 4,XXXXX XXXXXX,XXXXXXX@XXXXXX.com,25100.0675,XXXXXX
 5,XXXXXX XXXXXXX,XX@XXXXX.com,25100.0675,XXXXXX
 ```
+
+## Constraints
+
+## Constraints
+
+- Input CSV must include a header row with the exact fields: `ID`, `Name`, `Email`, `Billing`, `Location`.
+- The `ID` must be a unique identifier.
+- The `Name`, `Email`, and `Location` fields must be non-empty strings.
+- The `Billing` field must be a positive numeric value with up to two decimal places. 
+- Email addresses must contain a valid format.
+- All rows that fail validation or contain missing/invalid fields are ignored.
+- Output file will contain only valid and properly masked rows.
