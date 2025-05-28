@@ -1,0 +1,4 @@
+venv/
+*.pyc
+# Output files
+data/masked_clients.csv
